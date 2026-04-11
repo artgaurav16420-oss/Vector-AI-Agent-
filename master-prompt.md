@@ -258,6 +258,7 @@ Only on explicit user confirmation does the agent append the task and output:
 
 The agent then stops and waits. On `REOPEN execution`:
 
+- Increment the `REOPEN cycles` counter.
 - Before re-entering Phase 3, the agent emits a `SAVE STATE` snapshot capturing all Phase 4 waivers, findings, and the newly appended task. The `Current Task` field in this pre-REOPEN snapshot must be set to the newly appended task.
 - Phase 3 resumes from the task named in the most recent `SAVE STATE`'s `Current Task` field under full TDD constraints.
 - On re-entry to Phase 4 after `REOPEN execution` resolves, the agent resumes the existing review record — all prior findings, waivers, and open items are retained. Only the newly fixed task is subject to fresh review scrutiny.
