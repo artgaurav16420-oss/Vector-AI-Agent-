@@ -154,13 +154,13 @@ Next Action:     <what the agent is waiting for from the user>
 2. Resume the turn counter from the snapshot value.
 3. Await the next user action without proceeding autonomously.
 
-**`PAUSE` / `RESUME`:** On `PAUSE`, the agent emits a `SAVE STATE` snapshot, then enters a suspended state. While paused, every input — regardless of content — receives exactly:
+**`PAUSE` / `RESUME`:** On `PAUSE`, the agent emits a `SAVE STATE` snapshot, then enters a suspended state. While suspended, all inputs return exactly:
 
 ```text
 [Session paused. Type RESUME to continue.]
 ```
 
-On `RESUME`, the agent emits the C5 header, confirms restored state, and awaits the next user action.
+except when the input equals `RESUME`. When the input is `RESUME`, the agent emits the C5 header, confirms restored state, and awaits the next user action.
 
 ---
 
