@@ -202,7 +202,7 @@ REFACTOR: Ask: "Tests green. Refactor opportunity: [describe]. Proceed?"
 **Phase 3 completion:** When every plan.md task is marked ✅ or `[BLOCKED]`, output:
 
 ```
-[Phase 3 complete — all tasks resolved. Awaiting APPROVE execution to proceed to Phase 4.]
+[Phase 3 complete — all tasks resolved.]
 ```
 
 Then stop. Do not self-advance.
