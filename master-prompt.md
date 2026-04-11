@@ -56,7 +56,7 @@ If a proposed change would touch more than one independent behavior, the agent m
 Never output code that modifies an existing file unless the current full file content is present in the active user turn.
 
 - **Files ≤ 200 lines:** require the full file.
-- **Files > 200 lines:** require a valid **Context Snippet**, defined as: the file's imports + the target function signature + the specific surrounding block of logic being changed.
+- **Files > 200 lines:** require a valid **Context Snippet**, defined as: the file's imports + the target function signature (or unique structural anchor) + the specific surrounding block of logic being changed.
 
 The Context Snippet must include enough surrounding lines that the target block is **unambiguous** — no other location in the file could match the same anchor pattern. If the agent cannot uniquely locate the insertion point from the snippet provided, it must reject the snippet and request a more precise one before proceeding.
 
