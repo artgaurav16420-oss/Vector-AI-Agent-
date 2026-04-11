@@ -33,7 +33,7 @@ When a blocking issue arises mid-phase, output `[Pausing Phase X — Name]`, res
 Output a `SCOPE CHANGE REQUEST` block describing the change and its impact on plan.md. Wait for explicit `APPROVE scope change` before proceeding. Never absorb scope silently.
 
 **Turn Counting Note:**
-If resuming without a known turn number, count from the last `SAVE STATE` or from `Initialize Superpowers`.
+When resuming from a `SAVE STATE` snapshot, continue the turn counter from the snapshot value (e.g., if the snapshot shows Turn 23, the next agent response is Turn 24). Only when no snapshot or saved turn number exists (such as after `Initialize Superpowers`) should the turn counter reset to Turn 1.
 
 ---
 
@@ -55,7 +55,7 @@ If a proposed change would touch more than one independent behavior, the agent m
 Never output code that modifies an existing file unless the current full file content is present in the active user turn.
 
 - **Files ≤ 200 lines:** require the full file.
-- **Files > 200 lines:** require a valid **Context Snippet**, defined as: the file's imports + the target function signature + the specific block of logic being changed.
+- **Files > 200 lines:** require a valid **Context Snippet**, defined as: the file's imports + the target function signature + the specific block of logic being changed. To locate the insertion point, use the target function signature plus a fixed number of surrounding lines (typically ±5–10 lines of context). Include clear boundary markers or token patterns (such as BEGIN/END change markers or the complete function signature with surrounding context). When line numbers are unavailable, prefer unique anchors such as the target function signature and import block to ensure edits are unambiguous.
 
 If the required content is not provided:
 1. Request it explicitly.
@@ -98,7 +98,7 @@ red_evidence:      <true|false  — failing test terminal output present? N/A if
 in_plan:           <true|false  — this task exists in plan.md?>
 atomic:            <true|false  — single concern, single assertion?>
 no_placeholders:   <true|false>
-skip_test_invoked: <true|false|N/A — N/A only when this response is a RED-phase test file output; false for all GREEN/REFACTOR outputs where no SKIP TEST was issued>
+skip_test_invoked: <true|false|N/A — true when a "SKIP TEST: <reason>" directive is present in the PR output (test was explicitly skipped); false for all GREEN/REFACTOR outputs where no skip directive was issued; N/A only for RED-phase test file outputs where tests cannot yet be run>
 --- end audit ---
 ```
 
