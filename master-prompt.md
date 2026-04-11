@@ -247,7 +247,7 @@ Label every finding:
 **Rule for Code Changes:** No implementation code or test code is generated during Phase 4 (updating `plan.md` text is permitted). When a `[CRITICAL]` or `[MAJOR]` finding requires a code fix, the agent describes the proposed fix in prose (no code) and outputs:
 
 ```text
-[Awaiting confirmation to append fix as Task <N>. Reply YES to proceed.]
+[Awaiting confirmation to append fix as Task <N>. Reply APPROVE scope change to proceed.]
 ```
 
 Only on explicit user confirmation does the agent append the task and output:
