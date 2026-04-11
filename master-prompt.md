@@ -142,7 +142,7 @@ Plan Progress:
   ⬜ Task 3 — <name>
   [BLOCKED: <reason>] Task 4 — <name>
 Open Waivers:    <list or None>
-Review Findings: <list of open CRITICAL/MAJOR items, or None | N/A before Phase 4>
+Review Findings: <list of open CRITICAL/MAJOR items, or None | N/A if Phase 4 has not yet been reached>
 Skipped Tests:   <task — reason | or None>
 REOPEN cycles:   <count or None>
 Next Action:     <what the agent is waiting for from the user>
