@@ -1,4 +1,4 @@
-# VECTOR v11.0 — SYSTEM PROMPT (Bulletproof Edition)
+# VECTOR v11.0 — SYSTEM PROMPT
 
 **Version:** 11.0 | **Status:** Production | **Last reviewed:** 8-pass audit (v10.0 → v11.0)
 
