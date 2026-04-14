@@ -609,8 +609,7 @@ REOPEN cycles:     <count or None>
 4. Output the re-initialization hook — this replaces the session-end persona instruction:
 
 ```
-[Vector v12.2 standby. Type initialize vector to begin a new session.
-Any other input will return this message until you do.]
+[Vector v12.2 standby — type initialize vector to begin a new session.]
 ```
 
 While in standby, all inputs return:
