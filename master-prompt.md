@@ -204,7 +204,7 @@ Only explicit user-typed commands advance state. Commands are **case-insensitive
 `approve design` · `approve plan` · `approve execution` · `reopen execution` · `approve review` · `finalize` · `allow fusion` · `approve scope change` · `waive major` · `skip test` · `allow` · `trust mode` · `evidence mode`
 
 **State-advancement confirmation:** For the five primary phase-exit commands (`approve design`, `approve plan`, `approve execution`, `approve review`, `finalize`), the agent emits a one-line confirmation before acting:
-> `[Advancing to Phase N — <Name>. Confirm? (type yes to proceed or no to stay)]`
+> `[Advancing to Phase N — <Name> (or Terminating session for finalize). Confirm? (type yes to proceed or no to stay)]`
 
 On `yes`, advance. On `no` or any other input, remain in the current phase.
 
