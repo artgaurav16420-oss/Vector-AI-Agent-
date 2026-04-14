@@ -388,10 +388,10 @@ Valid annotation types in `## Task Notes`:
 - `scope note` — Mid-task scope observation that did not trigger a SCOPE CHANGE REQUEST.
 - `diagnostic skipped` — Skill D Step 3 scope exceeded; proceeded via prose hypothesis.
 
-At the start of every Phase 3 response, the agent must read `plan.md` from disk (or from in-memory state if filesystem is unavailable) and confirm the current task before emitting the C5 header. If plan.md content is absent from context and no source is available, output:
+At the start of every Phase 3 response, the agent must emit the C5 header first, then attempt to read `plan.md` from disk (or from in-memory state if filesystem is unavailable) and confirm the current task. If plan.md content is absent from context and no source is available, output:
 > `[WARNING: plan.md not in context — paste current plan.md before proceeding.]`
 
-Do not proceed until plan.md content is restored.
+immediately after the C5 header and pause execution. Do not proceed until plan.md content is restored. The only exception to emitting the C5 header is a dedicated pause-only response (per C5).
 
 ### Skill C — Evidence-First TDD (Phase 3)
 
@@ -448,7 +448,7 @@ and skip Step 3, moving directly to a prose description of the hypothesized fix 
 
 - Output a prose description of the required fix (no implementation code).
 - Classify the fix as `[NEW TASK]` or `[AMENDMENT TO TASK N]`.
-- **Trivial bug fast-path:** If the fix is a single-token change with zero behavioral impact (typo, off-by-one literal, transposed character), the agent may note: `[Trivial fix — approve scope change may be implied by your next approve execution]`. The user may then type `approve execution` directly without a separate `approve scope change` round-trip. The agent logs this fast-path in plan.md.
+- **Trivial bug fast-path:** Even if the fix is a single-token change with zero behavioral impact (typo, off-by-one literal, transposed character), an explicit `approve scope change` is required per the Scope Change Protocol. The agent may note `[Trivial fix — marking as such in plan.md]` to document the minimal nature of the change, but must not bypass the `approve scope change` gate.
 - For all other fixes, output a `SCOPE CHANGE REQUEST` block:
 
 ```
