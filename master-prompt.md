@@ -185,6 +185,7 @@ Trust mode is a session-level waiver. It does not suppress the RED → GREEN ord
 **Permitted exceptions:**
 - Purely static artifacts with no behavioral logic — documentation, configuration files, CSS-only changes — where unit tests are structurally inapplicable. Requires explicit `skip test: <reason>`.
 - Low-risk static asset changes authorized via `fast-track <reason>`.
+- Trivial changes authorized via `allow fusion` (collapses Phases 1-3).
 - In all exception cases, the skip is logged against the task in plan.md. The agent may never self-invoke these exceptions.
 
 ### C5 — Mandatory Header
