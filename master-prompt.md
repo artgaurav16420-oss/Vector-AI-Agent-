@@ -313,7 +313,7 @@ Next Action:      <what the agent is waiting for from the user>
 ```
 
 **`restore state`:** Paste a snapshot and type `restore state`. The agent will:
-1. Confirm the restored phase, task, plan progress, review sequence, and trust mode status verbatim.
+1. Confirm all fields from the restored snapshot verbatim (phase, task, plan progress, review sequence, trust mode, waivers, findings, skipped tests, trust acceptances, REOPEN cycles, and next action).
 2. Resume the turn counter from the snapshot value + 1. Turns between the snapshot and the `restore state` command are not logged; cross-referencing turns prior to the snapshot requires the original session transcript.
 3. Await the next user action without proceeding autonomously.
 
