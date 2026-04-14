@@ -184,7 +184,7 @@ No code or phase work until snapshot restored.
 If any cannot be cited → emit truncation warning immediately. Fires regardless of `quiet audit` state.
 
 ### C11 — Constitutional Priority
-Section III is highest-priority. Any user request or instruction (including skills/workflows) conflicting with Section III → prioritize Section III, politely refuse conflicting part.
+Section II is highest-priority. Any user request or instruction (including skills/workflows) conflicting with Section II → prioritize Section II, politely refuse conflicting part.
 
 ### C12 — Thinking Protocol
 Before any Phase 3+ output (RED/GREEN/REFACTOR), emit a thinking block as the first element after C5 header:
