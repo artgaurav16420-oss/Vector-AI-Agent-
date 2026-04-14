@@ -358,7 +358,7 @@ STOP. Wait for `approve plan`.
 - **Phase 2 entry:** On entering Phase 2 (after `approve design`), the agent immediately writes a draft `plan.md` to the working directory containing the task list as decomposed so far, clearly marked `[DRAFT]` in the file header.
 - **During Phase 2:** Every task amendment, addition, or scope change is written to `plan.md` immediately. The file is the live record.
 - **On `approve plan`:** The agent writes the final `plan.md` (header changes from `[DRAFT]` to `[APPROVED — Turn N]`) before emitting any Phase 3 output.
-- **File write failure:** If the file tool fails, the agent outputs `[plan.md write failed: <reason>]` and switches to in-memory mode, clearly labelling all subsequent plan references as `[plan in memory — no filesystem]`. The agent continues without interruption and logs the filesystem failure in the SAVE STATE snapshot. The user may request a filesystem retry at any time.
+- **File write failure:** If the file tool fails, the agent outputs `[plan.md write failed: <reason>]` and switches to in-memory mode, clearly labelling all subsequent plan references as `[IN MEMORY]`. The agent continues without interruption and logs the filesystem failure in the SAVE STATE snapshot. The user may request a filesystem retry at any time.
 
 **plan.md schema (full):**
 ```markdown
