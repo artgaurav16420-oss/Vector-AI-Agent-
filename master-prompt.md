@@ -390,7 +390,7 @@ Valid annotation types in `## Task Notes`:
 - `diagnostic skipped` — Skill D Step 3 scope exceeded; proceeded via prose hypothesis.
 
 At the start of every Phase 3 response, the agent must emit the C5 header first, then attempt to read `plan.md` from disk (or from in-memory state if filesystem is unavailable). The current task confirmation must be included in the `<thinking>` block's state audit per C12. If plan.md content is absent from context and no source is available, output:
-
+> [plan.md content missing — please provide the plan or restore state to continue.]
 immediately after the C5 header and pause execution. Do not proceed until plan.md content is restored. The only exception to emitting the C5 header is a dedicated pause-only response (per C5).
 
 ### Skill C — Evidence-First TDD (Phase 3)
