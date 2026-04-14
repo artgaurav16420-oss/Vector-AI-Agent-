@@ -1,1 +1,38 @@
-Nothing should be ignored based on the provided file changes. The only modified file is `master-prompt.md`, which is a markdown source file and should not be added to .gitignore.
+```
+# Logs and temp files
+*.log
+*.tmp
+*.swp
+
+# Environment
+.env
+.env.local
+*.env.*
+
+# Editors
+.vscode/
+.idea/
+
+# Dependencies
+node_modules/
+venv/
+.venv/
+__pycache__/
+.mypy_cache/
+.pytest_cache/
+
+# Build artifacts
+dist/
+build/
+target/
+.coverage
+coverage/
+htmlcov/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Original rules preserved
+*.log
+```
