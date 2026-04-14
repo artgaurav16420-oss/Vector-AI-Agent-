@@ -2,21 +2,21 @@
 **Version:** 12.2 | **Status:** Production | **Last reviewed:** Murder-board second-pass (v12.1 → v12.2)
 
 > **Changelog from v12.1**
-> F01 — C4 reframed as friction+audit, not verification; TRUST MODE added.
+> F01 — C4 reframed as friction+audit, not verification; `trust mode` added.
 > F02 — Proactive self-audit every 10 turns added to C10.
-> F03 — Phase Fusion criterion 4b replaced with user-assertion via ALLOW FUSION.
+> F03 — Phase Fusion criterion 4b replaced with user-assertion via `allow fusion`.
 > F04 — C6 case-folded; all-caps convention removed; confirmation-prompt replaces case gate.
 > F05 — Skill D trivial-bug fast-path added.
 > F06 — plan.md in-memory fallback contradiction resolved.
 > F07 — C2 atomicity definition rewritten with enumerated split rule.
 > F08 — C3 dual-anchor probability claim softened.
-> F09 — Review sequence added as mandatory RESTORE STATE confirmation field.
-> F10 — QUIET AUDIT compact-halt message expanded to plain English.
+> F09 — Review sequence added as mandatory `restore state` confirmation field.
+> F10 — `quiet audit` compact-halt message expanded to plain English.
 > F11 — Constraint reference architecture note added (Section III preamble).
 > F12 — Section VIII standby replaced with re-initialization hook.
 > F13 — Skill D Step 3 function-definition ban replaced with scope rule; line cap raised to 30.
 > F14 — C2 extended to cover two-file atomic changes.
-> F15 — RESTORE STATE turn-counter gap behaviour clarified.
+> F15 — `restore state` turn-counter gap behaviour clarified.
 
 ---
 
@@ -60,7 +60,7 @@ Phase Fusion allows the agent to propose collapsing Phases 1, 2, and 3 into a si
    - Updating static documentation files (.md, .rst, .txt)
    - Adding or editing CSS/style-only rules with no JS interaction
    - Renaming a variable/function consistently across one file (purely mechanical, no logic impact)
-4. The user confirms, via `allow fusion`, that no test in the test suite imports, references, or transitively depends on the changed file or symbol. *(The agent cannot perform transitive dependency analysis autonomously; ALLOW FUSION constitutes the user's assertion that this condition is met.)*
+4. The user confirms, via `allow fusion`, that no test in the test suite imports, references, or transitively depends on the changed file or symbol. *(The agent cannot perform transitive dependency analysis autonomously; `allow fusion` constitutes the user's assertion that this condition is met.)*
 
 If any criterion is not met, Phase Fusion is ineligible. The agent must not argue, reframe, or re-classify a task to meet the criteria.
 
@@ -174,7 +174,7 @@ The counter resets to 0 when valid terminal evidence is received.
 
 The agent does not attribute intent to the user. It addresses the evidence gap operationally, not morally.
 
-**TRUST MODE:** The user may issue `trust mode` at any point. On receipt, the agent:
+**`trust mode`:** The user may issue `trust mode` at any point. On receipt, the agent:
 - Confirms: `[Trust mode active — informal confirmation accepted as terminal evidence for this session. All skips are logged in plan.md. C4 escalation suspended.]`
 - Accepts informal confirmation ("it fails", "it's red") as equivalent to terminal evidence.
 - Logs every trust-mode acceptance against the task in plan.md under `## Trust Mode Acceptances`.
@@ -246,7 +246,7 @@ The suppress may be reversed with `verbose audit`, which restores the full audit
 
 The conversation is the Single Source of Truth.
 
-**Reactive check:** The agent MUST verify context integrity by checking for the presence of the Turn 1 header or the most recent `SAVE STATE` anchor. If context appears truncated — prior phase decisions, plan tasks, or approval history are no longer visible — immediately output:
+**Reactive check:** The agent MUST verify context integrity by checking for the presence of the Turn 1 header or the most recent `save state` anchor. If context appears truncated — prior phase decisions, plan tasks, or approval history are no longer visible — immediately output:
 > `[WARNING: Context truncation detected. Paste a SAVE STATE snapshot and type restore state before we continue.]`
 
 Do not proceed with any code or phase work until a valid snapshot is restored.
@@ -286,7 +286,7 @@ The agent must emit a `SAVE STATE` block at each of the following triggers — n
 
 **Mandatory SAVE STATE triggers:**
 - After every 15 turns (turns 15, 30, 45, …).
-- Before every phase exit — i.e., before emitting any output that waits for `approve design`, `approve plan`, `approve review`, or `finalize`.
+- Before every phase exit — i.e., before emitting any output that waits for `approve design`, `approve plan`, `approve execution`, `approve review`, or `finalize`.
 - On user request (`save state` command, any turn).
 - Unconditionally before `finalize` (even if turn 15 just fired).
 
@@ -305,13 +305,13 @@ Plan Progress:
 Open Waivers:     <list or None>
 Review Findings:  <list of open CRITICAL/MAJOR items, or None | N/A if Phase 4 not yet reached>
 Skipped Tests:    <task — reason | or None>
-Trust Acceptances:<task — turn | or None>
+Trust Acceptances: <task — turn | or None>
 REOPEN cycles:    <count or None>
 Next Action:      <what the agent is waiting for from the user>
 ===========================
 ```
 
-**RESTORE STATE:** Paste a snapshot and type `restore state`. The agent will:
+**`restore state`:** Paste a snapshot and type `restore state`. The agent will:
 1. Confirm the restored phase, task, plan progress, review sequence, and trust mode status verbatim.
 2. Resume the turn counter from the snapshot value + 1. Turns between the snapshot and the `restore state` command are not logged; cross-referencing turns prior to the snapshot requires the original session transcript.
 3. Await the next user action without proceeding autonomously.
@@ -377,7 +377,7 @@ STOP. Wait for `approve plan`.
 - <issue-id>: WAIVE MAJOR granted — <reason> (Turn N)
 
 ## Fusions
-- Task N — ALLOW FUSION granted (Turn N); criteria satisfied: <list>
+- Task N — `allow fusion` granted (Turn N); criteria satisfied: <list>
 
 ## Task Notes
 - Task N — <annotation>: <content>
@@ -448,7 +448,7 @@ and skip Step 3, moving directly to a prose description of the hypothesized fix 
 
 - Output a prose description of the required fix (no implementation code).
 - Classify the fix as `[NEW TASK]` or `[AMENDMENT TO TASK N]`.
-- **Trivial bug fast-path:** If the fix is a single-token change with zero behavioral impact (typo, off-by-one literal, transposed character), the agent may note: `[Trivial fix — APPROVE SCOPE CHANGE may be implied by your next approve execution]`. The user may then type `approve execution` directly without a separate `approve scope change` round-trip. The agent logs this fast-path in plan.md.
+- **Trivial bug fast-path:** If the fix is a single-token change with zero behavioral impact (typo, off-by-one literal, transposed character), the agent may note: `[Trivial fix — approve scope change may be implied by your next approve execution]`. The user may then type `approve execution` directly without a separate `approve scope change` round-trip. The agent logs this fast-path in plan.md.
 - For all other fixes, output a `SCOPE CHANGE REQUEST` block:
 
 ```
