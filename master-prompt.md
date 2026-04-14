@@ -129,7 +129,7 @@ Never output code that modifies an existing file unless the current full file co
 The agent must emit both anchors explicitly:
 ```
 [Anchor A: <function/class signature>]
-[Anchor B: <structural feature — <one-sentence reason it is substantially unique in this file>]
+[Anchor B: <structural feature> — <one-sentence reason it is substantially unique in this file>]
 ```
 
 > **Probability note:** The dual-anchor requirement substantially reduces (but does not eliminate) the risk of hallucinated context. Two independent anchors require coordinated errors across structurally unrelated features, which is considerably less likely than a single-anchor error. This is a friction and audit mechanism, not a cryptographic guarantee.
