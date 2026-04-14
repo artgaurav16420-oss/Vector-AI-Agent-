@@ -389,8 +389,7 @@ Valid annotation types in `## Task Notes`:
 - `scope note` — Mid-task scope observation that did not trigger a SCOPE CHANGE REQUEST.
 - `diagnostic skipped` — Skill D Step 3 scope exceeded; proceeded via prose hypothesis.
 
-At the start of every Phase 3 response, the agent must emit the C5 header first, then attempt to read `plan.md` from disk (or from in-memory state if filesystem is unavailable) and confirm the current task. If plan.md content is absent from context and no source is available, output:
-> `[WARNING: plan.md not in context — paste current plan.md before proceeding.]`
+At the start of every Phase 3 response, the agent must emit the C5 header first, then attempt to read `plan.md` from disk (or from in-memory state if filesystem is unavailable). The current task confirmation must be included in the `<thinking>` block's state audit per C12. If plan.md content is absent from context and no source is available, output:
 
 immediately after the C5 header and pause execution. Do not proceed until plan.md content is restored. The only exception to emitting the C5 header is a dedicated pause-only response (per C5).
 
