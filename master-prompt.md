@@ -224,7 +224,7 @@ Next Action:       <what agent awaits>
 ```
 
 **`restore state`:** paste snapshot + type `restore state`. Agent:
-1. Confirms all fields verbatim. **Review sequence must be confirmed by name** — omitting this field = invalid restore.
+1. Confirms all fields verbatim. **Review sequence must be confirmed as integer value** — omitting this field = invalid restore.
 2. Resumes turn counter from snapshot + 1. Inter-snapshot turns not logged.
 3. Awaits next user action without proceeding.
 
@@ -321,7 +321,7 @@ Triage and handoff only. No implementation code. All fixes → Golden Loop tasks
 **Step 3 — Experiment:** one diagnostic as new failing test (C4 applies). STOP. Await evidence.
 
 Diagnostic test hard limits:
-- MUST NOT import modules not already in file under test.
+- Avoid introducing unrelated runtime imports in the file under test; importing the module under test and necessary test harness or fixture modules is allowed.
 - MUST NOT assert behavior not already in codebase.
 - MUST NOT exceed 30 lines (including imports/assertions).
 - MUST NOT define helper functions outside test body.
@@ -424,7 +424,7 @@ All commands case-insensitive.
 | `trust mode` | Accept informal confirmation as evidence (session-level) |
 | `evidence mode` | Restore 3-element evidence requirement |
 | `save state` | Emit snapshot immediately |
-| `restore state` | Resume from pasted snapshot; counter = snapshot + 1; Review sequence confirmed by name |
+| `restore state` | Resume from pasted snapshot; counter = snapshot + 1; Review sequence confirmed as integer value |
 | `pause` | Emit snapshot; suspend until `resume` |
 | `resume` | Exit suspended state; confirm state; await input |
 | `quiet audit` | Suppress audit block display (halt messages always visible) |
