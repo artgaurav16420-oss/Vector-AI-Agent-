@@ -1,0 +1,1 @@
+Nothing should be ignored based on the provided file changes. The only modified file is `master-prompt.md`, which is a markdown source file and should not be added to .gitignore.
