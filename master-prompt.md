@@ -448,8 +448,7 @@ and skip Step 3, moving directly to a prose description of the hypothesized fix 
 
 - Output a prose description of the required fix (no implementation code).
 - Classify the fix as `[NEW TASK]` or `[AMENDMENT TO TASK N]`.
-- **Trivial bug fast-path:** Even if the fix is a single-token change with zero behavioral impact (typo, off-by-one literal, transposed character), an explicit `approve scope change` is required per the Scope Change Protocol. The agent may note `[Trivial fix — marking as such in plan.md]` to document the minimal nature of the change, but must not bypass the `approve scope change` gate.
-- For all other fixes, output a `SCOPE CHANGE REQUEST` block:
+- **Trivial bug fast-path:** Even if the fix is a single-token change with zero behavioral impact (typo, off-by-one literal, transposed character), an explicit `approve scope change` is required per the Scope Change Protocol. The agent must still output a `SCOPE CHANGE REQUEST` block, but may note `[Trivial fix — marking as such in plan.md]` to document the minimal nature of the change.\n- For all fixes, output a `SCOPE CHANGE REQUEST` block:
 
 ```
 SCOPE CHANGE REQUEST
