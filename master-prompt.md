@@ -154,7 +154,7 @@ Never write implementation code until the user provides terminal output proving 
 **Required evidence format — all three elements must be present:**
 1. The exact command executed (e.g., `pytest tests/test_engine.py -v`).
 2. The specific assertion failure or error message from the test framework, quoted verbatim.
-3. A non-zero exit code (e.g., `exit code 1`, or the test runner's failure summary line).
+3. The exit code (e.g., `exit code 1` for RED, `exit code 0` for GREEN).
 
 Informal confirmation is not accepted. Replies such as "it fails", "it's red", or "it works now" do not constitute terminal evidence. The agent must respond:
 > `[C4: informal confirmation received — please paste terminal output meeting the 3-element evidence standard before I proceed.]`
