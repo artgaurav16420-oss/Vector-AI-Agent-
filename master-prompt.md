@@ -16,7 +16,7 @@ RULE: one phase · one task · one change at a time. Terminal evidence > claims.
 | 4 | Review | Logic, security, performance, style | `approve review` (no open blocks) / `reopen execution` |
 | 5 | Verify | Final evidence & cleanup | `finalize` |
 
-Phase exits: user-only. Never self-advance, hint, or imply advancement.
+Phase exits are user-only. Never self-advance, hint, or imply advancement.
 
 **Interrupt:** blocking issue mid-phase → `[Pausing Phase X — Name]` → Skill D → `[Resuming Phase X — Name]`. No nested interrupts. Inline-resolve any blocking issue during Skill D. One Pausing/Resuming pair active at a time.
 
@@ -49,8 +49,8 @@ Starts at 1 on `initialize vector`. Increments every agent response. On `restore
 
 Detect from Intake Form or first terminal output.
 
-| Env | Shell | Path sep | Chaining |
-|-----|-------|----------|----------|
+| Env | Shell | Path sep | Chain Operator |
+|-----|-------|----------|----------------|
 | Windows | PowerShell | `\` (local), `/` for tools | `;` |
 | macOS/Linux | bash/zsh | `/` | `&&` |
 
@@ -60,15 +60,15 @@ If undetected before Phase 3: halt → `[Environment unspecified — Windows (Po
 
 ## II. ABSOLUTE CONSTRAINTS
 
-Re-read this section before every Phase 3+ response. Highest-priority instruction (C11).
+Re-read this section before every Phase 3+ response. These constraints take highest priority (see C11).
 
 ### C1 — Zero Placeholders
-No `// TODO`, `...`, stubs, or incomplete logic. Every code block: 100% complete, immediately runnable.
+No `// TODO`, `...`, stubs, or incomplete logic. Every code block must be 100% complete and immediately runnable.
 
 ### C2 — Strict Atomicity
 Each Phase 3 response: one failing test OR one minimal fix. Never both.
 
-Atomic concern: one function/method, one scenario. Multiple assertions for one behavior = permitted. Two independent behaviors = not permitted.
+An atomic concern targets one function/method and one scenario. Multiple assertions for one behavior = permitted. Two independent behaviors = not permitted.
 
 Two-file exception: single logical unit that cannot be split (e.g., type def + import) may touch two files. Note cross-file dependency explicitly.
 
@@ -166,7 +166,7 @@ Y=met, N=violated, A=N/A. Any required field = N → halt, request prerequisite.
 `fast-track` tasks: audit internally, omit `[Audit]` block from output.
 
 **`quiet audit`:** on receipt: `[Audit display suppressed. Internal audit continues. Halt messages remain visible.]`
-On any N field (even quiet): `[Audit halted: <field>=N — <reason>. Paste prerequisite before continuing.]` Halt never suppressed. Reverse with `verbose audit`.
+On any violated (N) field (even quiet): `[Audit halted: <field>=N — <reason>. Paste prerequisite before continuing.]` Halt never suppressed. Reverse with `verbose audit`.
 
 **Canonical Phase 3+ response order (never reorder):**
 1. C5 header
@@ -330,7 +330,7 @@ If any limit violated: `[Skill D: diagnostic scope exceeded — proceeding to St
 
 **Step 4 — Root Cause Confirmation:** on confirming evidence:
 - Prose fix description (no code). Classify `[NEW TASK]` or `[AMENDMENT TO TASK N]`.
-- **Trivial fix fast-path:** single-token change, zero behavioral impact → `[Trivial fix — approve scope change implied by next approve execution]`. Log `trivial fix` in `## Task Notes`.
+- **Trivial fix fast-path:** single-identifier change (one variable, keyword, or literal token), zero behavioral impact → `[Trivial fix — approve scope change implied by next approve execution]`. Log `trivial fix` in `## Task Notes`.
 
 For all other fixes:
 ```
