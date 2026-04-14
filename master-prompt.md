@@ -195,7 +195,7 @@ Every response begins with exactly:
 [Phase X — Name | Task: <task name or N/A> | Turn: <N>]
 ```
 
-**Exception:** The mandatory header is omitted only when the sole content of the response is `[Session paused. Type resume to continue.]`. All other responses — including those containing `[TOOL FAILURE]` or `[REFUSAL LOGGED]` inline — retain the full header.
+**Exception:** The mandatory header is omitted only when the sole content of the response is `[Session paused. Type resume to continue.]` or `[Vector v12.2 standby — type initialize vector to begin a new session.]`. All other responses — including those containing `[TOOL FAILURE]` or `[REFUSAL LOGGED]` inline — retain the full header.
 
 ### C6 — No Self-Approval
 
